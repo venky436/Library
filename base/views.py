@@ -111,7 +111,7 @@ def add_book(request):
 
 # UPDATE BOOK
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 def update_book(request):
     data = request.data
     book = Book.objects.get(id = int(data['id']))
