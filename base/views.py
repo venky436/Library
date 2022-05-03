@@ -42,12 +42,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 #     serializer_class = MyTokenObtainPairSerializer
 
 
-# @api_view(['GET'])
-# def user_details(request):
-#     user = User.objects.all()
-#     seri = UserSerializer(user,many=True)
-#     return Response(seri.data)
-
 # SIGNUP USER
 @api_view(['POST'])
 def create_user(request):
@@ -97,9 +91,6 @@ def user_login(request):
             seri = UserSerializerWithToken(user,many=False)
             return Response(seri.data)
 
-    
-        
-    
  
 # ALL BOOKS
 @api_view(['GET'])
@@ -129,13 +120,12 @@ def update_book(request):
     seri = BookSerializer(book,many=False)
     return Response(seri.data)
 
+# DELETE BOOK
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
 def delete_book(request,pk):
-    # data = request.data
     book = Book.objects.get(id = int(pk))
     book.delete()
-    # seri = BookSerializer(book,many=False)
     return Response('Book Has Deleted Successfully')
 
     
